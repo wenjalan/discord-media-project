@@ -1,5 +1,6 @@
 const {Client} = require('discord.js');
 const bot = new Client();
+const fs = require('fs');
 
 // retrieves all of a channel's messages, starting from a
 // given message and going backwards in time
@@ -29,7 +30,9 @@ const fetchHistory = async (channel, fromId) => {
     lastRetrieved = retrievedMessages.size;
 
     // log progress
-    console.log('Retrieved ' + messages.length + ' messages so far...');
+    if (messages.length % 1000 === 0) {
+      console.log('\tRetrieved ' + messages.length + ' messages so far...');
+    }
   }
 
   // return all the retrieved messages
@@ -85,7 +88,18 @@ bot.on('message', (msg) => {
 });
 
 // login and start bot
-bot.login('NTU2OTg3MDc1MzA4ODE0MzQ2.XI7cow.2oyHp8S3ck_QTrAl5Mah3CGxFWI');
-bot.generateInvite().then((invite) => {
-  console.log('Bot started: ' + invite);
+fs.readFile('bot.token', 'utf8', (err, data) => {
+  // report errors
+  if (err) {
+    console.error('Error starting bot: ' + err);
+  }
+
+  // get token
+  const token = data.substr(0, data.length - 2);
+
+  // log in and start
+  bot.login(token);
+  bot.generateInvite().then((invite) => {
+    console.log('Bot started: ' + invite);
+  });
 });
