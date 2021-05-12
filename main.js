@@ -64,6 +64,9 @@ bot.on('message', (msg) => {
     // log
     console.log('Fetching messages in channel ' + msg.channel.name + '...');
 
+    // set start typing
+    msg.channel.startTyping();
+
     // get channel's history
     fetchHistory(channel, msg.id).then((messages) => {
       // report
@@ -78,7 +81,8 @@ bot.on('message', (msg) => {
         });
       });
 
-      // send info
+      // send info and stop typing
+      msg.channel.stopTyping();
       channel.send('Found ' + attachments.length + ' attachments');
       attachments.forEach((attachment) => {
         console.log(attachment.url);
