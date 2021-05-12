@@ -1,6 +1,41 @@
 const {Client} = require('discord.js');
 const bot = new Client();
 
+// retrieves all of a channel's messages, starting from a
+// given message and going backwards in time
+const fetchHistory = async (channel, fromId) => {
+  // variables to track
+  let lastMsgId = fromId;
+  let lastRetrieved = -1;
+  const messages = [];
+
+  // keep fetching messages while there are more
+  while (lastRetrieved === 100 || lastRetrieved === -1) {
+    const retrievedMessages = await channel.messages.fetch(
+        {
+          limit: 100,
+          before: lastMsgId,
+        },
+    );
+
+    // push all the messages
+    retrievedMessages.forEach((msg) => {
+      messages.push(msg);
+    });
+
+    // update tracking variables
+    const lastMsg = messages[messages.length - 1];
+    lastMsgId = lastMsg.id;
+    lastRetrieved = retrievedMessages.size;
+
+    // log progress
+    console.log('Retrieved ' + messages.length + ' messages so far...');
+  }
+
+  // return all the retrieved messages
+  return messages;
+};
+
 // on message
 bot.on('message', (msg) => {
   // if it was sent by a bot ignore it
@@ -23,29 +58,29 @@ bot.on('message', (msg) => {
       return;
     }
 
-    // get the channel's history
-    channel.messages.fetch({limit: 100})
-        .then((messages) => {
-          // send info
-          channel.send('Found ' + messages.size + ' messages.');
+    // log
+    console.log('Fetching messages in channel ' + msg.channel.name + '...');
 
-          // find all attachments
-          const attachments = [];
-          messages.forEach((msg) => {
-            msg.attachments.forEach((msgAttachment) => {
-              attachments.push(msgAttachment);
-            })
-          });
+    // get channel's history
+    fetchHistory(channel, msg.id).then((messages) => {
+      // report
+      console.log('Found ' + messages.length +
+        ' messages in channel ' + channel.name);
 
-          // send info
-          channel.send('Found ' + attachments.length + ' attachments');
-          attachments.forEach((attachment) => {
-            console.log(attachment.url);
-          });
-        })
-        .catch((error) => {
-          console.error(error);
-        })
+      // find all attachments
+      const attachments = [];
+      messages.forEach((msg) => {
+        msg.attachments.forEach((msgAttachment) => {
+          attachments.push(msgAttachment);
+        });
+      });
+
+      // send info
+      channel.send('Found ' + attachments.length + ' attachments');
+      attachments.forEach((attachment) => {
+        console.log(attachment.url);
+      });
+    });
   }
 });
 
