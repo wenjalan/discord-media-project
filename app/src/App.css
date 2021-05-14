@@ -37,4 +37,5 @@
   flex: 1;
   margin: 5px;
   height: 30vmin;
+  cursor: pointer;
 }

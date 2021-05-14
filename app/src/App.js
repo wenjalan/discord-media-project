@@ -67,7 +67,10 @@ function GalleryItem(props) {
 
   // return an item
   return (
-    <div className="Gallery-item" style={backgroundImageStyle} />
+    <div
+      className="Gallery-item"
+      onClick={() => window.open(mediaUrl, "_blank")}
+      style={backgroundImageStyle} />
   );
 }
 
