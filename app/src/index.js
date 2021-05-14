@@ -21,6 +21,26 @@ const exampleItems = [
     url: "https://media.discordapp.net/attachments/722365245653385268/842588153722044446/cae3bde1de5e3627d16addafe2ba1ec1.png?width=377&height=670",
     date: "2021-5-13 11:13 PM",
   },
+  {
+    author: "@elb",
+    url: "https://media.discordapp.net/attachments/722365245653385268/842594741719924776/image0.jpg?width=376&height=669",
+    date: "2021-5-13 11:13 PM",
+  },
+  {
+    author: "@fku",
+    url: "https://media.discordapp.net/attachments/722365245653385268/842594741719924776/image0.jpg?width=376&height=669",
+    date: "2021-5-13 11:13 PM",
+  },
+  {
+    author: "@mat",
+    url: "https://media.discordapp.net/attachments/722365245653385268/842596401681793033/image0.png?width=309&height=670",
+    date: "2021-5-13 11:13 PM",
+  },
+  {
+    author: "@bon",
+    url: "https://media.discordapp.net/attachments/722365245653385268/842592567866425345/unknown.png?width=591&height=670",
+    date: "2021-5-13 11:13 PM",
+  },
 ];
 
 ReactDOM.render(

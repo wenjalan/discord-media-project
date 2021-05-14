@@ -15,7 +15,7 @@ function Gallery(props) {
   let galleryRows = [];
 
   // do sets of 3 or less links at a time
-  const maxItemsPerRow = 3;
+  const maxItemsPerRow = 4;
   for (let i = 0; i < media.length; i += maxItemsPerRow) {
     // get a subset of the links
     let subset = media.slice(i, i + maxItemsPerRow);
