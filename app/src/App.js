@@ -56,6 +56,7 @@ function GalleryRow(props) {
   );
 }
 
+// creates an item in a row of a gallery, given an item's information
 function GalleryItem(props) {
   // get the media url of this item
   const itemInfo = props.itemInfo;
