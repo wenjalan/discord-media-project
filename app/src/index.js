@@ -23,7 +23,7 @@ const exampleItems = [
   },
   {
     author: "@elb",
-    url: "https://media.discordapp.net/attachments/722365245653385268/842594741719924776/image0.jpg?width=376&height=669",
+    url: "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=376&height=669",
     date: "2021-5-13 11:13 PM",
   },
   {
