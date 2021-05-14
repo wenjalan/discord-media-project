@@ -28,11 +28,13 @@
 .Gallery-row {
   display: flex;
   flex-direction: row;
-  height: 30vmin;
 }
 
 .Gallery-item {
   background-color: green;
+  background-repeat: no-repeat;
+  background-size: cover;
   flex: 1;
   margin: 5px;
+  height: 30vmin;
 }
