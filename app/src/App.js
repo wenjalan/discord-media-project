@@ -4,10 +4,10 @@ import React from 'react';
 // creates a Gallery of images given a list of media urls
 function Gallery(props) {
   // get urls from props
-  const mediaUrls = props.media;
+  const media = props.media;
 
   // if no media urls were given, complain
-  if (mediaUrls === undefined || mediaUrls.length === 0) {
+  if (media === undefined || media.length === 0) {
     console.error("Error loading media URLS");
   }
 
@@ -16,9 +16,9 @@ function Gallery(props) {
 
   // do sets of 3 or less links at a time
   const maxItemsPerRow = 3;
-  for (let i = 0; i < mediaUrls.length; i += maxItemsPerRow) {
+  for (let i = 0; i < media.length; i += maxItemsPerRow) {
     // get a subset of the links
-    let subset = mediaUrls.slice(i, i + maxItemsPerRow);
+    let subset = media.slice(i, i + maxItemsPerRow);
 
     // create a new row for each set of links
     galleryRows.push(<GalleryRow items={subset}/>);
@@ -42,10 +42,10 @@ function GalleryRow(props) {
 
   // for each URL
   let index = 0;
-  items.forEach((url) => {
+  items.forEach((item) => {
     // create a new Gallery Item and add it to itemDivs
     itemDivs.push(
-      <GalleryItem key={index} url={url}/>
+      <GalleryItem key={index} itemInfo={item}/>
     );
     index++;
   });
@@ -58,37 +58,33 @@ function GalleryRow(props) {
 
 function GalleryItem(props) {
   // get the media url of this item
-  const mediaUrl = props.url;
+  const itemInfo = props.itemInfo;
 
   // create a background style for this item
   let backgroundImageStyle = {
-    backgroundImage: "url(" + mediaUrl + ")"
+    backgroundImage: "url(" + itemInfo.url + ")"
   }
 
   // return an item
   return (
     <div
       className="Gallery-item"
-      onClick={() => window.open(mediaUrl, "_blank")}
-      style={backgroundImageStyle} />
+      onClick={() => window.open(itemInfo.url, "_blank")}
+      style={backgroundImageStyle}>
+      {/*{itemInfo.author + " at " + itemInfo.date}*/}
+    </div>
   );
 }
 
-function App() {
+function App(props) {
+  const channelName = props.channelName;
+  const items = props.items;
   return (
     <div className="App">
       <header className="App-header">
-        <h1>#channel-name</h1>
+        <h1>{"#" + channelName}</h1>
         <div className="Divider"/>
-        <Gallery media={
-          [
-            "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=377&height=670",
-            "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=377&height=670",
-            "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=377&height=670",
-            "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=377&height=670",
-            "https://media.discordapp.net/attachments/722365245653385268/842607169342144522/image0.png?width=377&height=670",
-          ]
-        }/>
+        <Gallery media={items}/>
       </header>
     </div>
   );
