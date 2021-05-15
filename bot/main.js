@@ -82,7 +82,7 @@ bot.on('message', (msg) => {
       const attachments = [];
       messages.forEach((msg) => {
         // for all messages with an author and attachments
-        if (msg.member !== null && msg.attachments.length > 0) {
+        if (msg.member !== null) {
           // create a new info object for it
           const nickname = msg.member.displayName;
           const date = msg.createdAt;
@@ -99,8 +99,11 @@ bot.on('message', (msg) => {
       // send attachments info to server
       const info = {
         'guildId': channel.guild.id,
+        'guildName': channel.guild.name,
         'channelId': channel.id,
+        'channelName': channel.name,
         'authorId': msg.author.id,
+        'authorUsername': msg.author.username,
         'attachments': attachments,
       };
 

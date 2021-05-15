@@ -1,7 +1,7 @@
 // require express
 const express = require('express');
 const cors = require('cors');
-const port = 3001;
+const fs = require('fs');
 
 // create express server
 const server = express();
@@ -57,8 +57,13 @@ server.get("/api/:id", (req, res) => {
 })
 
 // start server
-server.listen(port, () => {
-  console.log("Server started at URL:" + port);
-});
+fs.readFile("../server_cfg.json", "utf8", (err, data) => {
+  const cfg = JSON.parse(data);
+  const port = cfg.port;
+  server.listen(port, () => {
+    console.log("Server started on port " + port);
+  });
+})
+
 
 

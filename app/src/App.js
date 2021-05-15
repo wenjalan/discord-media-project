@@ -120,7 +120,7 @@ function App(props) {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>{"#" + channelInfo.channelId}</h1>
+        <h1>{"#" + channelInfo.channelName}</h1>
         <div className="Divider"/>
         <Gallery media={channelInfo.attachments}/>
       </header>

@@ -53,8 +53,8 @@ ReactDOM.render(
       <Route path="/:root/:id">
         <App channelName={"pics"} items={exampleItems}/>
       </Route>
-      <Route path="/">
-        <h1>hi</h1>
+      <Route exact path="/discord-media-project">
+        <h1>:)</h1>
       </Route>
     </Router>
   </React.StrictMode>,
