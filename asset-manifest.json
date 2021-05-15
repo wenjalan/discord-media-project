@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/discord-media-project/static/css/main.707055af.chunk.css",
-    "main.js": "/discord-media-project/static/js/main.2f1a1ba0.chunk.js",
-    "main.js.map": "/discord-media-project/static/js/main.2f1a1ba0.chunk.js.map",
-    "runtime-main.js": "/discord-media-project/static/js/runtime-main.ba9dc053.js",
-    "runtime-main.js.map": "/discord-media-project/static/js/runtime-main.ba9dc053.js.map",
-    "static/js/2.7c633c45.chunk.js": "/discord-media-project/static/js/2.7c633c45.chunk.js",
-    "static/js/2.7c633c45.chunk.js.map": "/discord-media-project/static/js/2.7c633c45.chunk.js.map",
-    "static/js/3.e311f4d8.chunk.js": "/discord-media-project/static/js/3.e311f4d8.chunk.js",
-    "static/js/3.e311f4d8.chunk.js.map": "/discord-media-project/static/js/3.e311f4d8.chunk.js.map",
+    "main.css": "/discord-media-project/static/css/main.e2f9078e.chunk.css",
+    "main.js": "/discord-media-project/static/js/main.81a853b6.chunk.js",
+    "main.js.map": "/discord-media-project/static/js/main.81a853b6.chunk.js.map",
+    "runtime-main.js": "/discord-media-project/static/js/runtime-main.cf2ee5f9.js",
+    "runtime-main.js.map": "/discord-media-project/static/js/runtime-main.cf2ee5f9.js.map",
+    "static/js/2.67a42eb0.chunk.js": "/discord-media-project/static/js/2.67a42eb0.chunk.js",
+    "static/js/2.67a42eb0.chunk.js.map": "/discord-media-project/static/js/2.67a42eb0.chunk.js.map",
+    "static/js/3.31e5ce27.chunk.js": "/discord-media-project/static/js/3.31e5ce27.chunk.js",
+    "static/js/3.31e5ce27.chunk.js.map": "/discord-media-project/static/js/3.31e5ce27.chunk.js.map",
     "index.html": "/discord-media-project/index.html",
-    "static/css/main.707055af.chunk.css.map": "/discord-media-project/static/css/main.707055af.chunk.css.map",
-    "static/js/2.7c633c45.chunk.js.LICENSE.txt": "/discord-media-project/static/js/2.7c633c45.chunk.js.LICENSE.txt"
+    "static/css/main.e2f9078e.chunk.css.map": "/discord-media-project/static/css/main.e2f9078e.chunk.css.map",
+    "static/js/2.67a42eb0.chunk.js.LICENSE.txt": "/discord-media-project/static/js/2.67a42eb0.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.ba9dc053.js",
-    "static/js/2.7c633c45.chunk.js",
-    "static/css/main.707055af.chunk.css",
-    "static/js/main.2f1a1ba0.chunk.js"
+    "static/js/runtime-main.cf2ee5f9.js",
+    "static/js/2.67a42eb0.chunk.js",
+    "static/css/main.e2f9078e.chunk.css",
+    "static/js/main.81a853b6.chunk.js"
   ]
 }
