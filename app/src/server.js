@@ -1,10 +1,12 @@
 // require express
 const express = require('express');
+const cors = require('cors');
 const port = 3001;
 
 // create express server
 const server = express();
 server.use(express.json());
+server.use(cors());
 
 // map of ids to info objects
 const data = {};
@@ -40,9 +42,9 @@ server.post("/api", (req, res) => {
 });
 
 // create endpoint for getting posts
-server.get("/api", (req, res) => {
+server.get("/api/:id", (req, res) => {
   // return the post data corresponding to the id
-  const reqId = req.body.id;
+  const reqId = req.params.id;
   const info = data["" + reqId];
 
   // if there was no info object for that id, complain

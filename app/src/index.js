@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
 
 // example items
 const exampleItems = [
@@ -45,7 +49,14 @@ const exampleItems = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App channelName={"pics"} items={exampleItems}/>
+    <Router>
+      <Route path="/:root/:id">
+        <App channelName={"pics"} items={exampleItems}/>
+      </Route>
+      <Route path="/">
+        <h1>hi</h1>
+      </Route>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
