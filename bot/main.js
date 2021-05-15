@@ -4,7 +4,8 @@ const fs = require('fs');
 const axios = require('axios');
 
 // the URL of the server to connect to
-const serverUrl = 'http://localhost:3000';
+const appUrl = 'http://localhost:3000/discord-media-project'
+const serverUrl = 'http://localhost:3001';
 
 // retrieves all of a channel's messages, starting from a
 // given message and going backwards in time
@@ -80,7 +81,9 @@ bot.on('message', (msg) => {
       // find all attachments
       const attachments = [];
       messages.forEach((msg) => {
-        if (msg.member !== null) {
+        // for all messages with an author and attachments
+        if (msg.member !== null && msg.attachments.length > 0) {
+          // create a new info object for it
           const nickname = msg.member.displayName;
           const date = msg.createdAt;
           msg.attachments.forEach((msgAttachment) => {
@@ -92,13 +95,6 @@ bot.on('message', (msg) => {
           });
         }
       });
-
-      // send info and stop typing
-      // msg.channel.stopTyping();
-      // channel.send('Found ' + attachments.length + ' attachments');
-      // attachments.forEach((attachment) => {
-      //   console.log(attachment.url);
-      // });
 
       // send attachments info to server
       const info = {
@@ -116,7 +112,7 @@ bot.on('message', (msg) => {
       // on good response
       .then((res) => {
         const id = res.data.id;
-        channel.send(serverUrl + '/' + id);
+        channel.send(appUrl + '/' + id);
       })
       // on bad response
       .catch((error) => {

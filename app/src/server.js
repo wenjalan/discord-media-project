@@ -1,6 +1,6 @@
 // require express
 const express = require('express');
-const port = 3000;
+const port = 3001;
 
 // create express server
 const server = express();
@@ -56,7 +56,7 @@ server.get("/api", (req, res) => {
 
 // start server
 server.listen(port, () => {
-  console.log("Server started at URL:3000");
+  console.log("Server started at URL:" + port);
 });
 
 
