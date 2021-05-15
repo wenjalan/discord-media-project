@@ -50,10 +50,10 @@ const exampleItems = [
 ReactDOM.render(
   <React.StrictMode>
     <Router basename='/'>
-      <Route path="/:root/:id">
+      <Route path="/:id">
         <App channelName={"pics"} items={exampleItems}/>
       </Route>
-      <Route exact path="/discord-media-project">
+      <Route exact path="/">
         <h1>:)</h1>
       </Route>
     </Router>
