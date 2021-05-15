@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/discord-media-project/static/css/main.e2f9078e.chunk.css",
-    "main.js": "/discord-media-project/static/js/main.3400658a.chunk.js",
-    "main.js.map": "/discord-media-project/static/js/main.3400658a.chunk.js.map",
+    "main.js": "/discord-media-project/static/js/main.bac98fad.chunk.js",
+    "main.js.map": "/discord-media-project/static/js/main.bac98fad.chunk.js.map",
     "runtime-main.js": "/discord-media-project/static/js/runtime-main.cf2ee5f9.js",
     "runtime-main.js.map": "/discord-media-project/static/js/runtime-main.cf2ee5f9.js.map",
-    "static/js/2.67a42eb0.chunk.js": "/discord-media-project/static/js/2.67a42eb0.chunk.js",
-    "static/js/2.67a42eb0.chunk.js.map": "/discord-media-project/static/js/2.67a42eb0.chunk.js.map",
+    "static/js/2.21889bf9.chunk.js": "/discord-media-project/static/js/2.21889bf9.chunk.js",
+    "static/js/2.21889bf9.chunk.js.map": "/discord-media-project/static/js/2.21889bf9.chunk.js.map",
     "static/js/3.31e5ce27.chunk.js": "/discord-media-project/static/js/3.31e5ce27.chunk.js",
     "static/js/3.31e5ce27.chunk.js.map": "/discord-media-project/static/js/3.31e5ce27.chunk.js.map",
     "index.html": "/discord-media-project/index.html",
     "static/css/main.e2f9078e.chunk.css.map": "/discord-media-project/static/css/main.e2f9078e.chunk.css.map",
-    "static/js/2.67a42eb0.chunk.js.LICENSE.txt": "/discord-media-project/static/js/2.67a42eb0.chunk.js.LICENSE.txt"
+    "static/js/2.21889bf9.chunk.js.LICENSE.txt": "/discord-media-project/static/js/2.21889bf9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.cf2ee5f9.js",
-    "static/js/2.67a42eb0.chunk.js",
+    "static/js/2.21889bf9.chunk.js",
     "static/css/main.e2f9078e.chunk.css",
-    "static/js/main.3400658a.chunk.js"
+    "static/js/main.bac98fad.chunk.js"
   ]
 }
