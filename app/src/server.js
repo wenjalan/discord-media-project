@@ -2,9 +2,16 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const https = require('https');
 
 // create express server
+const key = fs.readFileSync('../ssl/key.pem');
+const cert = fs.readFileSync('../ssl/cert.pem');
+console.log('Loaded key and cert:');
+console.log(key);
+console.log(cert);
 const server = express();
+const ssl = https.createServer({key: key, cert: cert}, server);
 server.use(express.json());
 server.use(cors());
 
@@ -60,10 +67,10 @@ server.get("/api/:id", (req, res) => {
 fs.readFile("../server_cfg.json", "utf8", (err, data) => {
   const cfg = JSON.parse(data);
   const port = cfg.port;
-  server.listen(port, () => {
+  ssl.listen(port, () => {
     console.log("Server started on port " + port);
   });
-})
+});
 
 
 
