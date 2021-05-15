@@ -49,7 +49,7 @@ const exampleItems = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <Router basename='/'>
       <Route path="/:root/:id">
         <App channelName={"pics"} items={exampleItems}/>
       </Route>
