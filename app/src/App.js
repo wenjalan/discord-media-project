@@ -1,5 +1,10 @@
 import './App.css';
-import React from 'react';
+import { React, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+
+// the url of the server to retrieve information from
+const serverUrl = "http://localhost:3001"
 
 // creates a Gallery of images given a list of media urls
 function Gallery(props) {
@@ -9,6 +14,7 @@ function Gallery(props) {
   // if no media urls were given, complain
   if (media === undefined || media.length === 0) {
     console.error("Error loading media URLS");
+    return (<h1>:)</h1>);
   }
 
   // create the rows of items
@@ -78,14 +84,45 @@ function GalleryItem(props) {
 }
 
 function App(props) {
+  // state variables
+  const [channelInfo, setChannelInfo] = useState(
+      {
+        "guildId": "loading...",
+        "channelId": "loading...",
+        "authorId": "loading...",
+        "attachments": [],
+      }
+    );
+
+  // get the channel info from the server
+  const id = useParams().id;
+  console.log("Retrieving channel info with id " + id);
+
+  // query server
+  axios.get(
+    serverUrl + "/api/" + id
+  )
+  .then((res) => {
+    // log
+    const info = res.data;
+    console.log('Retrieved channel info for channel ' + id);
+    console.log(info);
+    setChannelInfo(info);
+  })
+  .catch((error) => {
+    // log
+    console.error('Error retrieving channel info for channel ' + id);
+    console.error(error);
+  })
+
   const channelName = props.channelName;
   const items = props.items;
   return (
     <div className="App">
       <header className="App-header">
-        <h1>{"#" + channelName}</h1>
+        <h1>{"#" + channelInfo.channelName}</h1>
         <div className="Divider"/>
-        <Gallery media={items}/>
+        <Gallery media={channelInfo.attachments}/>
       </header>
     </div>
   );

@@ -1,6 +1,11 @@
 const {Client} = require('discord.js');
 const bot = new Client();
 const fs = require('fs');
+const axios = require('axios');
+
+// the URL of the server to connect to
+const appUrl = 'http://localhost:3000/discord-media-project'
+const serverUrl = 'http://localhost:3001';
 
 // retrieves all of a channel's messages, starting from a
 // given message and going backwards in time
@@ -76,17 +81,51 @@ bot.on('message', (msg) => {
       // find all attachments
       const attachments = [];
       messages.forEach((msg) => {
-        msg.attachments.forEach((msgAttachment) => {
-          attachments.push(msgAttachment);
-        });
+        // for all messages with an author and attachments
+        if (msg.member !== null) {
+          // create a new info object for it
+          const nickname = msg.member.displayName;
+          const date = msg.createdAt;
+          msg.attachments.forEach((msgAttachment) => {
+            attachments.push({
+              'author': nickname,
+              'url': msgAttachment.url,
+              'date': date,
+            });
+          });
+        }
       });
 
-      // send info and stop typing
-      msg.channel.stopTyping();
-      channel.send('Found ' + attachments.length + ' attachments');
-      attachments.forEach((attachment) => {
-        console.log(attachment.url);
-      });
+      // send attachments info to server
+      const info = {
+        'guildId': channel.guild.id,
+        'guildName': channel.guild.name,
+        'channelId': channel.id,
+        'channelName': channel.name,
+        'authorId': msg.author.id,
+        'authorUsername': msg.author.username,
+        'attachments': attachments,
+      };
+
+      // send to server
+      axios.post(
+        serverUrl + '/api',
+        info
+      )
+      // on good response
+      .then((res) => {
+        const id = res.data.id;
+        channel.send(appUrl + '/' + id);
+      })
+      // on bad response
+      .catch((error) => {
+        channel.send('Error when accessing server');
+        channel.send(error.message);
+      })
+      // stop typing
+      .finally(() => {
+        channel.stopTyping();
+      })
     });
   }
 });
