@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 // the url of the server to retrieve information from
-const serverUrl = "http://localhost:3001"
+const serverUrl = "http://129.146.252.87:3001"
 
 // creates a Gallery of images given a list of media urls
 function Gallery(props) {
