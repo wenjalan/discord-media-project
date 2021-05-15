@@ -5,13 +5,13 @@ const fs = require('fs');
 const https = require('https');
 
 // create express server
-const key = fs.readFileSync('../ssl/key.pem');
-const cert = fs.readFileSync('../ssl/cert.pem');
-console.log('Loaded key and cert:');
-console.log(key);
-console.log(cert);
+// const key = fs.readFileSync('../ssl/key.pem');
+// const cert = fs.readFileSync('../ssl/cert.pem');
+// console.log('Loaded key and cert:');
+// console.log(key);
+// console.log(cert);
 const server = express();
-const ssl = https.createServer({key: key, cert: cert}, server);
+// const ssl = https.createServer({key: key, cert: cert}, server);
 server.use(express.json());
 server.use(cors());
 
@@ -61,13 +61,18 @@ server.get("/api/:id", (req, res) => {
 
   // send back the info object
   res.send(data["" + reqId]);
+});
+
+// test endpoint
+server.get("/ping", (req, res) => {
+  res.send("pong");
 })
 
 // start server
 fs.readFile("../server_cfg.json", "utf8", (err, data) => {
   const cfg = JSON.parse(data);
   const port = cfg.port;
-  ssl.listen(port, () => {
+  server.listen(port, () => {
     console.log("Server started on port " + port);
   });
 });
