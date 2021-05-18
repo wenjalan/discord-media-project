@@ -17,50 +17,56 @@ function Gallery(props) {
     return (<h1>:)</h1>);
   }
 
-  // create the rows of items
-  let galleryRows = [];
+  // // create the rows of items
+  // let galleryRows = [];
+  //
+  // // do sets of 3 or less links at a time
+  // const maxItemsPerRow = 4;
+  // for (let i = 0; i < media.length; i += maxItemsPerRow) {
+  //   // get a subset of the links
+  //   let subset = media.slice(i, i + maxItemsPerRow);
+  //
+  //   // create a new row for each set of links
+  //   galleryRows.push(<GalleryRow items={subset}/>);
+  // }
 
-  // do sets of 3 or less links at a time
-  const maxItemsPerRow = 4;
-  for (let i = 0; i < media.length; i += maxItemsPerRow) {
-    // get a subset of the links
-    let subset = media.slice(i, i + maxItemsPerRow);
-
-    // create a new row for each set of links
-    galleryRows.push(<GalleryRow items={subset}/>);
-  }
+  // create item divs
+  let galleryItems = [];
+  media.forEach((item) => {
+    galleryItems.push(<GalleryItem key={galleryItems.length} itemInfo={item}/>);
+  })
 
   // return the gallery with its rows as children
   return (
     <div className="Gallery">
-        {galleryRows}
+        {galleryItems}
     </div>
   )
 }
 
-// creates a row in the gallery, given a list of background image urls
-function GalleryRow(props) {
-  // retrieve items
-  const items = props.items;
-
-  // create divs for each item
-  const itemDivs = [];
-
-  // for each URL
-  let index = 0;
-  items.forEach((item) => {
-    // create a new Gallery Item and add it to itemDivs
-    itemDivs.push(
-      <GalleryItem key={index} itemInfo={item}/>
-    );
-    index++;
-  });
-
-  // return the items in a row
-  return (
-    <div className="Gallery-row">{itemDivs}</div>
-  );
-}
+// // creates a row in the gallery, given a list of background image urls
+// function GalleryRow(props) {
+//   // retrieve items
+//   const items = props.items;
+//
+//   // create divs for each item
+//   const itemDivs = [];
+//
+//   // for each URL
+//   let index = 0;
+//   items.forEach((item) => {
+//     // create a new Gallery Item and add it to itemDivs
+//     itemDivs.push(
+//       <GalleryItem key={index} itemInfo={item}/>
+//     );
+//     index++;
+//   });
+//
+//   // return the items in a row
+//   return (
+//     <div className="Gallery-row">{itemDivs}</div>
+//   );
+// }
 
 // creates an item in a row of a gallery, given an item's information
 function GalleryItem(props) {
