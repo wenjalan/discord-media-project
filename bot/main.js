@@ -4,8 +4,9 @@ const fs = require('fs');
 const axios = require('axios');
 
 // the URL of the server to connect to
-const appUrl = 'http://localhost:3000/discord-media-project'
-const serverUrl = 'http://localhost:3001';
+// these change depending on whether this is the production or the development branch
+const appUrl = 'http://129.146.252.87:3000'
+const serverUrl = 'http://129.146.252.87:3001';
 
 // retrieves all of a channel's messages, starting from a
 // given message and going backwards in time
@@ -78,23 +79,38 @@ bot.on('message', (msg) => {
       console.log('Found ' + messages.length +
         ' messages in channel ' + channel.name);
 
-      // find all attachments
-      const attachments = [];
+      // find all attachments and embeds
+      const media = [];
       messages.forEach((msg) => {
         // for all messages with an author and attachments
         if (msg.member !== null) {
-          // create a new info object for it
+          // grab basic info
           const nickname = msg.member.displayName;
           const date = msg.createdAt;
+
+          // sort through attachments
           msg.attachments.forEach((msgAttachment) => {
-            attachments.push({
+            media.push({
               'author': nickname,
               'url': msgAttachment.url,
               'date': date,
             });
           });
+
+          // sort through embeds
+          msg.embeds.forEach((msgEmbed) => {
+            // if it was an image, video, or gif
+            if (msgEmbed.type === 'image' || msgEmbed.type === 'video' || msgEmbed.type === 'gifv') {
+              media.push({
+                'author': nickname,
+                'url': msgEmbed.url,
+                'date': date,
+              });
+            }
+          });
         }
       });
+
 
       // send attachments info to server
       const info = {
@@ -104,7 +120,7 @@ bot.on('message', (msg) => {
         'channelName': channel.name,
         'authorId': msg.author.id,
         'authorUsername': msg.author.username,
-        'attachments': attachments,
+        'attachments': media,
       };
 
       // send to server
@@ -115,7 +131,7 @@ bot.on('message', (msg) => {
       // on good response
       .then((res) => {
         const id = res.data.id;
-        channel.send(appUrl + '/' + id);
+        channel.send(appUrl + '/#/' + id);
       })
       // on bad response
       .catch((error) => {
