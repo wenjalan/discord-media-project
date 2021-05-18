@@ -4,8 +4,9 @@ const fs = require('fs');
 const axios = require('axios');
 
 // the URL of the server to connect to
-const appUrl = 'http://localhost:3000/discord-media-project'
-const serverUrl = 'http://localhost:3001';
+// these change depending on whether this is the production or the development branch
+const appUrl = 'http://129.146.252.87:3000'
+const serverUrl = 'http://129.146.252.87:3001';
 
 // retrieves all of a channel's messages, starting from a
 // given message and going backwards in time
@@ -115,7 +116,7 @@ bot.on('message', (msg) => {
       // on good response
       .then((res) => {
         const id = res.data.id;
-        channel.send(appUrl + '/' + id);
+        channel.send(appUrl + '/#/' + id);
       })
       // on bad response
       .catch((error) => {
