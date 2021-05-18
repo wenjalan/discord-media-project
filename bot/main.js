@@ -90,20 +90,26 @@ bot.on('message', (msg) => {
 
           // sort through attachments
           msg.attachments.forEach((msgAttachment) => {
-            media.push({
+            let info = {
               'author': nickname,
               'url': msgAttachment.url,
+              'style': 'attachment',
               'date': date,
-            });
+            };
+            media.push(info);
+            console.log(info);
           });
 
           // sort through embeds
           msg.embeds.forEach((msgEmbed) => {
-            // if it was an image, video, or gif
-            if (msgEmbed.type === 'image' || msgEmbed.type === 'video' || msgEmbed.type === 'gifv') {
+            // if it was an image, or gif
+            if (msgEmbed.type === 'image' || msgEmbed.type === 'gifv') {
               media.push({
                 'author': nickname,
                 'url': msgEmbed.url,
+                'style': 'embed',
+                'type': msgEmbed.type,
+                'thumbnail': msgEmbed.thumbnail === null ? null : msgEmbed.thumbnail.url,
                 'date': date,
               });
             }

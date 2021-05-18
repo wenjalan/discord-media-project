@@ -68,8 +68,48 @@ function GalleryItem(props) {
   const itemInfo = props.itemInfo;
 
   // create a background style for this item
+  // base (error) style
   let backgroundImageStyle = {
-    backgroundImage: "url(" + itemInfo.url + ")"
+    backgroundColor: "red",
+  };
+
+  // if it's an attachment image
+  if (itemInfo.style === "attachment") {
+    backgroundImageStyle = {
+      backgroundImage: "url(" + itemInfo.url + ")"
+    }
+  }
+
+  // if it's an embedded image
+  if (itemInfo.style === "embed" && itemInfo.type === "image") {
+    backgroundImageStyle = {
+      backgroundImage: "url(" + itemInfo.url + ")"
+    }
+  }
+
+  // if it's a video, do something entirely different
+  if (itemInfo.url.endsWith(".mp4")) {
+    return (
+      <video
+        className="Gallery-item"
+        // onClick={() => window.open(itemInfo.url, "_blank")}
+        controls
+        >
+        <source src={itemInfo.url} type="video/mp4"/>
+      </video>
+    );
+  }
+
+  // if it's an mp3, do something entirely different
+  if (itemInfo.url.endsWith(".mp3")) {
+    return (
+      <audio
+        className="Gallery-item"
+        controls
+        >
+        <source src={itemInfo.url} type="audio/mpeg"/>
+      </audio>
+    );
   }
 
   // return an item
